@@ -7,6 +7,7 @@
   npm install
   npm start
 ```
+项目是使用`create-react-app`创建的, 相应的命令可以根据`create-react-app`的文档查询
 
 ## 目录解释
 component/counter.js 是展示组件</br>
