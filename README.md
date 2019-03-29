@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 下载启动
 
-## Available Scripts
+执行以下命令
+```shell
+  git clone https://github.com/Evolution404/react-redux-counter-demo.git
+  cd react-redux-counter-demo
+  npm install
+  npm start
+```
 
-In the project directory, you can run:
+## 目录解释
+component/counter.js 是展示组件</br>
+App.js 是容器组件</br>
+actions/action.js定义了两个动作`add`和`minus`</br>
+reducers/index.js定义了接收到动作后的操作</br>
+index.js创建全局store使用Provider包裹App组件将其渲染到dom</br>
 
-### `npm start`
+## connect函数
+将**展示组件与容器组件**进行连接</br>
+connect函数是一个高阶函数, 返回值也是一个函数</br>
+返回函数传入展示组件后返回容器组件</br>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+connect(mapStateToProps, mapDispatchToprops)(Counter)
+```
+这句代码将`Counter`组件进行了包装, 返回的新组件就是容器组件
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+### mapStateToProps
+从字面上理解将state向props进行映射
+本质上是一个接收store返回一个对象的函数
+这个返回的对象是展示组件的props的一部分
+mapStateToProps主要用于普通数据的传递
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### mapDispatchToprops
+将dispatch向props进行映射
+本质也是一个函数, 参数是dispatch, 返回一个对象
+这个返回的对象同样成为展示组件的props的一部分
+最终的展示组件的props就是两者进行组合的结果
+mapDispatchToprops主要用于回调函数的传递, 这个函数一般会发送action
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
