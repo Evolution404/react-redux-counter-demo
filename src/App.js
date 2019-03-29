@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux'
+import {add, minus} from './actions/action'
+import Counter from './component/counter'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+// 将store转换为要连接的组件的props
+// 是一个函数, 参数就是当前state
+const mapStateToProps = state => {
+  return {
+    value: state
   }
 }
 
-export default App;
+// 将dispatch转换为要连接的组件的props
+// 是一个函数
+const mapDispatchToprops = dispatch => {
+  return {
+    add: ()=>{dispatch(add())},
+    minus: ()=>{dispatch(minus())},
+  }
+}
+
+export default 
+  connect(mapStateToProps, mapDispatchToprops)(Counter)
